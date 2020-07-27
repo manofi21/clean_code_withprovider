@@ -45,32 +45,18 @@ class WidgetBaru extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 buttonPrintTextFieldValues(keys, context),
-                buttonAddTextFieldCount(keys2,context,singleaset)
-                // showForm(keys2, singleaset)
+                // buttonAddTextFieldCount(keys2,context,singleaset)
+                showForm(keys2, singleaset)
               ],
             ),
             body: Consumer<ProviderForTextField>(
-                builder: (context, crud, _) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Flexible(
-                            child: Form(
-                                key: keys2,
-                                child: textFormFields(
-                                  initialValue: "1",
-                                  onSaved: singleValid.saver,
-                                ))),
-                        Expanded(
-                          child: WidgetEditGist(
-                            gistOpened: crud.listFieldProvider,
-                            keys: keys,
-                            function: crud.listFunctionProvider
-                                .map((e) => Valid(e).saver)
-                                .toList(),
-                          ),
-                        )
-                      ],
-                    ))));
+                builder: (context, crud, _) =>  WidgetEditGist(
+                        gistOpened: crud.listFieldProvider,
+                        keys: keys,
+                        function: crud.listFunctionProvider
+                            .map((e) => Valid(e).saver)
+                            .toList(),
+                      ),
+                    )));
   }
 }

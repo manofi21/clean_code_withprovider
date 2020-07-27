@@ -15,3 +15,8 @@ class ProviderForTextField with ChangeNotifier {
     listFunction = listField.map((e) => GetASet()).toList();
     notifyListeners();
   }
+
+  void dialogItem(GlobalKey<FormState> keys, GetASet getter, BuildContext context, Widget widgets){
+    modalDialogItem(keys, getter,context, widgets);
+  }
+}
