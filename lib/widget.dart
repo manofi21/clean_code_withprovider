@@ -76,8 +76,7 @@ class WidgetShowForm {
   }
 
   Widget buttonUpdateTextFieldCount(VoidCallback voidCallback) {
-    return Floatind:
-    gActionButton(
+    return FloatingActionButton(
         heroTag: 'update gist',
         child: Icon(Icons.print),
         onPressed: voidCallback);
