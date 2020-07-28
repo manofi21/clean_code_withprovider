@@ -1,3 +1,4 @@
+import 'package:clean_code_withprovider/widget.dart';
 import 'package:flutter/material.dart';
 import 'getterSetter.dart';
 
@@ -14,9 +15,5 @@ class ProviderForTextField with ChangeNotifier {
     listField = List<String>.generate(index, (int index) => "");
     listFunction = listField.map((e) => GetASet()).toList();
     notifyListeners();
-  }
-
-  void dialogItem(GlobalKey<FormState> keys, GetASet getter, BuildContext context, Widget widgets){
-    modalDialogItem(keys, getter,context, widgets);
   }
 }

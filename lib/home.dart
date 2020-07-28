@@ -29,14 +29,14 @@ class WidgetEditGist extends StatelessWidget {
 }
 
 class WidgetBaru extends StatelessWidget {
+  GlobalKey keys = new GlobalKey<FormState>();
+
+  GetASet singleaset = GetASet();
+
+  GlobalKey keys2 = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    GlobalKey keys = new GlobalKey<FormState>();
-
-    GetASet singleaset = GetASet();
-    Valid singleValid = Valid(singleaset);
-
-    GlobalKey keys2 = new GlobalKey<FormState>();
+    WidgetShowForm showForm = WidgetShowForm(keys2, singleaset, context);
     return ChangeNotifierProvider<ProviderForTextField>(
         create: (context) => ProviderForTextField(),
         child: Scaffold(
@@ -45,18 +45,17 @@ class WidgetBaru extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 buttonPrintTextFieldValues(keys, context),
-                // buttonAddTextFieldCount(keys2,context,singleaset)
-                showForm(keys2, singleaset)
+                showForm.showForm()
               ],
             ),
             body: Consumer<ProviderForTextField>(
-                builder: (context, crud, _) =>  WidgetEditGist(
-                        gistOpened: crud.listFieldProvider,
-                        keys: keys,
-                        function: crud.listFunctionProvider
-                            .map((e) => Valid(e).saver)
-                            .toList(),
-                      ),
-                    )));
+              builder: (context, crud, _) => WidgetEditGist(
+                gistOpened: crud.listFieldProvider,
+                keys: keys,
+                function: crud.listFunctionProvider
+                    .map((e) => Valid(e).saver)
+                    .toList(),
+              ),
+            )));
   }
 }
