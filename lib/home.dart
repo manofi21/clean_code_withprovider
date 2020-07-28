@@ -36,26 +36,24 @@ class WidgetBaru extends StatelessWidget {
   GlobalKey keys2 = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    WidgetShowForm showForm = WidgetShowForm(keys2, singleaset, context);
-    return ChangeNotifierProvider<ProviderForTextField>(
-        create: (context) => ProviderForTextField(),
-        child: Scaffold(
+    List<String> listInitial = ["",""];
+    List<GetASet> listGetterSetter = listInitial.map((e) => GetASet()).toList();
+    return  Scaffold(
             appBar: AppBar(),
             floatingActionButton: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buttonPrintTextFieldValues(keys, context),
-                showForm.showForm()
+                buttonPrintTextFieldValues(keys, listGetterSetter),
+                // showForm.showForm()
               ],
             ),
-            body: Consumer<ProviderForTextField>(
-              builder: (context, crud, _) => WidgetEditGist(
-                gistOpened: crud.listFieldProvider,
+            body: WidgetEditGist(
+                gistOpened: listInitial,
                 keys: keys,
-                function: crud.listFunctionProvider
+                function: listGetterSetter
                     .map((e) => Valid(e).saver)
                     .toList(),
               ),
-            )));
+            );
   }
 }
